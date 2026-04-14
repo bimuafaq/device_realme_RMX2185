@@ -1,0 +1,2 @@
+# Allow permissioncontroller_app to find tethering_service
+allow permissioncontroller_app tethering_service:service_manager find;

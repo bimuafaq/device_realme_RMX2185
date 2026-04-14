@@ -1,0 +1,12 @@
+# Allow init to mount vendor overlay
+allow init vendor_overlay_file:dir mounton;
+
+# Allow init to mount vendor configs
+allow init vendor_configs_file:file mounton;
+allow init vendor_configs_file:dir mounton;
+
+# Allow init to create socket_device(s)
+allow init socket_device:sock_file create_file_perms;
+
+# Other init rules
+allow init proc:file { write setattr };

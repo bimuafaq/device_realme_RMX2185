@@ -1,0 +1,42 @@
+# kpoc_charger - System-Side Refined (Android 11 Compliant)
+type kpoc_charger, domain, coredomain;
+type kpoc_charger_exec, system_file_type, exec_type, file_type;
+
+# VIP Mode for seamless vendor interaction
+permissive kpoc_charger;
+
+init_daemon_domain(kpoc_charger)
+
+# HAL clients
+hal_client_domain(kpoc_charger, hal_graphics_allocator)
+hal_client_domain(kpoc_charger, hal_health)
+
+# 1. System Device Access
+allow kpoc_charger graphics_device:dir search;
+allow kpoc_charger graphics_device:chr_file rw_file_perms;
+allow kpoc_charger ion_device:chr_file rw_file_perms;
+allow kpoc_charger input_device:dir r_dir_perms;
+allow kpoc_charger input_device:chr_file rw_file_perms;
+allow kpoc_charger rtc_device:chr_file rw_file_perms;
+allow kpoc_charger kmsg_device:chr_file rw_file_perms;
+
+# 2. System Node Access
+allow kpoc_charger sysfs:dir r_dir_perms;
+allow kpoc_charger sysfs_leds:dir r_dir_perms;
+allow kpoc_charger sysfs_batteryinfo:dir r_dir_perms;
+allow kpoc_charger sysfs_power:file rw_file_perms;
+allow kpoc_charger sysfs_dt_firmware_android:dir r_dir_perms;
+allow kpoc_charger sysfs_dt_firmware_android:file r_file_perms;
+allow kpoc_charger proc_cmdline:file r_file_perms;
+
+# 3. System Interactions
+allow kpoc_charger property_socket:sock_file write;
+allow kpoc_charger init:unix_stream_socket connectto;
+
+# 4. Capabilities (Fixed for Android 11)
+allow kpoc_charger self:capability { sys_nice sys_boot net_admin };
+allow kpoc_charger self:capability2 { block_suspend }; # block_suspend moved to capability2
+allow kpoc_charger self:netlink_kobject_uevent_socket { read create bind setopt };
+
+# 5. Rootfs access (Optional boilerplate)
+allow kpoc_charger rootfs:file r_file_perms;

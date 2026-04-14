@@ -1,0 +1,32 @@
+# Bluetooth (AptX)
+lib64/libaptX_encoder.so
+lib64/libaptXHD_encoder.so
+
+# Camera - from RMX2185_11_A.65
+vendor/lib/libdpframework.so:product/vendor_overlay/29/lib/libdpframework.so|c65a86fb5e7a0f71183e86e52ef023eae16eaddc
+vendor/lib64/libdpframework.so:product/vendor_overlay/29/lib64/libdpframework.so|54395fb0de799d1162405bff912e1095013b400f
+
+# Engineering Mode
+-priv-app/EngineerMode/EngineerMode.apk
+lib/libem_support_jni.so
+lib64/libem_support_jni.so
+
+# Kernel Power Off Charging (KPOC)
+bin/kpoc_charger
+etc/init/kpoc_charger.rc
+lib/libshowlogo.so
+
+# MTK-IMS
+etc/permissions/com.mediatek.op.ims.common.xml
+etc/permissions/privapp-permissions-mediatek.xml
+-priv-app/ImsService/ImsService.apk
+-framework/mediatek-common.jar
+-framework/mediatek-framework.jar
+-framework/mediatek-ims-base.jar
+-framework/mediatek-ims-common.jar
+-framework/mediatek-telecom-common.jar
+-framework/mediatek-telephony-base.jar
+-framework/mediatek-telephony-common.jar
+-framework/mediatek-ims-extension-plugin.jar
+-framework/mediatek-ims-legacy.jar
+-framework/mediatek-ims-wwop-common.jar

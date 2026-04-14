@@ -1,0 +1,4 @@
+# vendor_init
+allow vendor_init default_prop:file read;
+allow vendor_init loop_control_device:chr_file getattr;
+allow vendor_init proc_dirty:file write;

@@ -1,0 +1,4 @@
+# Mediatek Service Contexts (Mirroring Stock System)
+mtkIms                                    u:object_r:radio_service:s0
+mwis                                      u:object_r:radio_service:s0
+wfo                                       u:object_r:radio_service:s0
