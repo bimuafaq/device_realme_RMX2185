@@ -13,7 +13,6 @@ LOCAL_OVERRIDES_PACKAGES := \
     Etar \
     Jelly \
     Camera2 \
-    Gallery2 \
     Seedvault \
     Stk \
     Updater \
