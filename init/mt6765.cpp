@@ -4,8 +4,6 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-#include <cstdlib>
-#include <vector>
 #include <string>
 #include <fstream>
 #include <sys/sysinfo.h>
@@ -13,103 +11,74 @@
 #define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
 #include <sys/_system_properties.h>
 
-#include <android-base/properties.h>
-#include <android-base/logging.h>
-
 #include "vendor_init.h"
 
-struct RMX218X_props
-{
-    std::string build_description;
-    std::string build_fingerprint;
-    std::string device_build;
-    std::string product_device;
-};
-
-std::vector<std::string> ro_props_default_source_order = {
-    "",
-    "odm.",
-    "product.",
-    "system.",
-    "vendor.",
-    "system_ext.",
-};
-
-void property_override(char const prop[], char const value[], bool add = true)
+void property_override(char const prop[], char const value[])
 {
     prop_info *pi;
     pi = (prop_info *)__system_property_find(prop);
     if (pi)
         __system_property_update(pi, value, strlen(value));
-    else if (add)
+    else
         __system_property_add(prop, strlen(prop), value, strlen(value));
 }
 
 void setRMX(unsigned int variant)
 {
-    RMX218X_props prop[4] = {};
+    std::string device;
+    std::string fingerprint;
 
-    std::string build_desc = "full_oppo6765-user 10 QP1A.190711.020 bedd37e98646d3a1 release-keys";
-    std::string build_fingerprint = "realme/RMX2185T2/RMX2185:10/QP1A.190711.020/1622100863:user/release-keys";
-
-    // RMX2180
-    prop[0] = {
-        build_desc,
-        build_fingerprint,
-        "RMX2180",
-        "RMX2180",
-    };
-
-    // RMX2189
-    prop[1] = {
-        build_desc,
-        build_fingerprint,
-        "RMX2189",
-        "RMX2189",
-    };
-
-    // RMX2185
-    prop[2] = {
-        build_desc,
-        build_fingerprint,
-        "RMX2185",
-        "RMX2185",
-    };
-
-    const auto set_ro_build_prop = [](const std::string &source,
-                                      const std::string &prop, const std::string &value) {
-        auto prop_name = "ro." + source + "build." + prop;
-        property_override(prop_name.c_str(), value.c_str(), false);
-    };
-
-    const auto set_ro_product_prop = [](const std::string &source,
-                                        const std::string &prop, const std::string &value) {
-        auto prop_name = "ro.product." + source + prop;
-        property_override(prop_name.c_str(), value.c_str(), false);
-    };
-
-    property_override("ro.build.description", prop[variant].build_description.c_str());
-    property_override("ro.build.product", prop[variant].product_device.c_str());
-    for (const auto &source : ro_props_default_source_order)
-    {
-        set_ro_build_prop(source, "fingerprint", prop[variant].build_fingerprint.c_str());
-        set_ro_product_prop(source, "device", prop[variant].product_device.c_str());
-        set_ro_product_prop(source, "model", prop[variant].device_build.c_str());
+    switch (variant) {
+        case 0:
+            device = "RMX2180";
+            fingerprint = "realme/RMX2180T2/RMX2180:10/QP1A.190711.020/1622100863:user/release-keys";
+            break;
+        case 1:
+            device = "RMX2189";
+            fingerprint = "realme/RMX2189T2/RMX2189:10/QP1A.190711.020/1622100863:user/release-keys";
+            break;
+        default:
+            device = "RMX2185";
+            fingerprint = "realme/RMX2185T2/RMX2185:10/QP1A.190711.020/1622100863:user/release-keys";
+            break;
     }
-    property_override("ro.build.fingerprint", prop[variant].build_fingerprint.c_str());
-    property_override("ro.bootimage.build.fingerprint", prop[variant].build_fingerprint.c_str());
-    property_override("ro.product.bootimage.name", prop[variant].device_build.c_str());
-    property_override("ro.odm.build.fingerprint", prop[variant].build_fingerprint.c_str());
-    property_override("ro.vendor.build.fingerprint", prop[variant].build_fingerprint.c_str());
-    property_override("ro.vendor.oppo.fingerprint", prop[variant].build_fingerprint.c_str());
-    property_override("ro.product.odm.name", prop[variant].device_build.c_str());
-    property_override("ro.product.vendor.name", prop[variant].device_build.c_str());
-    property_override("ro.vendor.oppo.product.name", prop[variant].device_build.c_str());
+
+    std::string name = device + "T2";
+    std::string description = "full_oppo6765-user 10 QP1A.190711.020 bedd37e98646d3a1 release-keys";
+
+    property_override("ro.build.description", description.c_str());
+    property_override("ro.build.fingerprint", fingerprint.c_str());
+    property_override("ro.build.product", device.c_str());
+
+    property_override("ro.bootimage.build.fingerprint", fingerprint.c_str());
+    property_override("ro.odm.build.fingerprint", fingerprint.c_str());
+    property_override("ro.product.build.fingerprint", fingerprint.c_str());
+    property_override("ro.system.build.fingerprint", fingerprint.c_str());
+    property_override("ro.system_ext.build.fingerprint", fingerprint.c_str());
+    property_override("ro.vendor.build.fingerprint", fingerprint.c_str());
+    property_override("ro.vendor.oppo.fingerprint", fingerprint.c_str());
+
+    property_override("ro.product.device", device.c_str());
+    property_override("ro.product.model", device.c_str());
+    property_override("ro.product.name", name.c_str());
+    property_override("ro.product.system.device", device.c_str());
+    property_override("ro.product.system.model", device.c_str());
+    property_override("ro.product.product.device", device.c_str());
+    property_override("ro.product.product.model", device.c_str());
+    property_override("ro.product.system_ext.device", device.c_str());
+    property_override("ro.product.system_ext.model", device.c_str());
+    property_override("ro.product.vendor.device", device.c_str());
+    property_override("ro.product.vendor.model", device.c_str());
+    property_override("ro.product.vendor.name", name.c_str());
+    property_override("ro.product.odm.device", device.c_str());
+    property_override("ro.product.odm.model", device.c_str());
+    property_override("ro.product.odm.name", name.c_str());
+    property_override("ro.product.bootimage.name", name.c_str());
+    property_override("ro.vendor.oppo.product.name", name.c_str());
 }
 
 void set_dalvik()
 {
-    // Set dalvik heap configuration
     char const *heapstartsize;
     char const *heapgrowthlimit;
     char const *heapsize;
@@ -121,7 +90,6 @@ void set_dalvik()
     sysinfo(&sys);
 
     if (sys.totalram > 3072ull * 1024 * 1024) {
-        // from - phone-xhdpi-4096-dalvik-heap.mk
         heapstartsize = "8m";
         heapgrowthlimit = "192m";
         heapsize = "512m";
@@ -129,7 +97,6 @@ void set_dalvik()
         heapminfree = "8m";
         heapmaxfree = "16m";
     } else {
-        // from - phone-xhdpi-2048-dalvik-heap.mk
         heapstartsize = "8m";
         heapgrowthlimit = "128m";
         heapsize = "256m";
@@ -158,11 +125,11 @@ void vendor_load_properties()
     fin.close();
 
     if (buf.find("S98635AA1") != std::string::npos) {
-        setRMX(0); // RMX2180
+        setRMX(0);
     } else if (buf.find("S98639AA1") != std::string::npos) {
-        setRMX(1); //RMX2189
+        setRMX(1);
     } else {
-        setRMX(2); // RMX2185
+        setRMX(2);
     }
 
     set_dalvik();
