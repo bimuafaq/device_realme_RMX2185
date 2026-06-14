@@ -57,6 +57,16 @@ LOCAL_OVERRIDES_PACKAGES := \
     IconPackKaiSettingsOverlay \
     IconPackKaiSystemUIOverlay \
     IconPackKaiThemePickerOverlay \
+    IconPackSamAndroidOverlay \
+    IconPackSamLauncherOverlay \
+    IconPackSamSettingsOverlay \
+    IconPackSamSystemUIOverlay \
+    IconPackSamThemePickerOverlay \
+    IconPackRoundedAndroidOverlay \
+    IconPackRoundedLauncherOverlay \
+    IconPackRoundedSettingsOverlay \
+    IconPackRoundedSystemUIOverlay \
+    IconPackRoundedThemePickerOverlay \
     IconShapePebbleOverlay \
     IconShapeRoundedRectOverlay \
     IconShapeSquircleOverlay \
