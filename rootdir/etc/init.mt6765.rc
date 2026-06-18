@@ -70,3 +70,7 @@ on property:vendor.ril.mtk=1
 on property:sys.boot_completed=1
     setprop vendor.oppo.biometrics.fingerprint.boot_completed 1
     swapon_all /system/etc/fstab.zram
+
+    # Smart charging sysfs permission
+    chown system system /sys/class/power_supply/battery/mmi_charging_enable
+    chmod 0660 /sys/class/power_supply/battery/mmi_charging_enable
