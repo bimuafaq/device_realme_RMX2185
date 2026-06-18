@@ -1,7 +1,3 @@
-# Bootanimation
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.config.nocheckin=1
-
 # Display
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.sf.lcd_density=320
