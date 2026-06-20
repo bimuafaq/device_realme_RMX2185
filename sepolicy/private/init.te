@@ -1,3 +1,6 @@
+# Declare sysfs_mmcblk type (also defined in vendor CIL for mmc block devices)
+type sysfs_mmcblk, fs_type, sysfs_type;
+
 # Allow init to mount vendor overlay
 allow init vendor_overlay_file:dir mounton;
 
@@ -10,3 +13,6 @@ allow init socket_device:sock_file create_file_perms;
 
 # Other init rules
 allow init proc:file { write setattr };
+
+# Allow init to set IO scheduler for mmc block devices
+allow init sysfs_mmcblk:file setattr;

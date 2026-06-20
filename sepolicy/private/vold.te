@@ -1,2 +1,5 @@
 # vold_prepare_subdirs
 allow vold_prepare_subdirs self:capability fsetid;
+
+# Allow vold to write uevent for mmc block devices (coldboot)
+allow vold sysfs_mmcblk:file w_file_perms;
