@@ -100,6 +100,7 @@ PRODUCT_PACKAGES += \
 # Init
 PRODUCT_PACKAGES += \
     init.mt6765.rc \
+    init.dt2w.rc \
     fstab.mt6765 \
     fstab.zram
 
