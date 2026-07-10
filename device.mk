@@ -38,12 +38,6 @@ PRODUCT_AAPT_PREF_CONFIG := xhdpi
 TARGET_SCREEN_HEIGHT := 1600
 TARGET_SCREEN_WIDTH := 720
 
-# Do not spin up a separate process for the network stack on go devices, use an in-process APK.
-PRODUCT_PACKAGES += InProcessNetworkStack
-PRODUCT_PACKAGES += CellBroadcastAppPlatform
-PRODUCT_PACKAGES += CellBroadcastServiceModulePlatform
-PRODUCT_PACKAGES += com.android.tethering.inprocess
-
 # Use a profile based boot image for this device. Note that this is currently a
 # generic profile and not Android Go optimized.
 PRODUCT_USE_PROFILE_FOR_BOOT_IMAGE := true
