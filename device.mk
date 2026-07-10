@@ -38,13 +38,6 @@ PRODUCT_AAPT_PREF_CONFIG := xhdpi
 TARGET_SCREEN_HEIGHT := 1600
 TARGET_SCREEN_WIDTH := 720
 
-# Use the low memory allocator to save RSS.
-MALLOC_SVELTE := true
-MALLOC_SVELTE_FOR_LIBC32 := true
-
-# Disable Scudo Switch to Jemalloc
-PRODUCT_DISABLE_SCUDO := true
-
 # Do not spin up a separate process for the network stack on go devices, use an in-process APK.
 PRODUCT_PACKAGES += InProcessNetworkStack
 PRODUCT_PACKAGES += CellBroadcastAppPlatform
