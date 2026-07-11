@@ -15,4 +15,5 @@ allow init socket_device:sock_file create_file_perms;
 allow init proc:file { write setattr };
 
 # Allow init to set IO scheduler for mmc block devices
-allow init sysfs_mmcblk:file setattr;
+allow init sysfs_mmcblk:file { write open setattr };
+allow init sysfs_devices_block:file { write open };
