@@ -1,0 +1,6 @@
+type fuelgauged_nvram, domain;
+type fuelgauged_nvram_exec, exec_type, vendor_file_type, file_type;
+
+allow fuelgauged_nvram sysfs_dt_firmware_android:dir search;
+allow fuelgauged_nvram metadata_file:dir search;
+allow fuelgauged_nvram sysfs_dt_firmware_android:file { getattr read open };
