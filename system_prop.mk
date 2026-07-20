@@ -19,9 +19,6 @@ PRODUCT_PRODUCT_PROPERTIES += \
 
 # Memory optimizations
 PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.madvise-random=true \
-    ro.statsd.enable=false \
-    ro.config.per_app_memcg=false \
     ro.surface_flinger.set_idle_timer_ms=100 \
     ro.surface_flinger.set_touch_timer_ms=200 \
     ro.surface_flinger.support_kernel_idle_timer=true
