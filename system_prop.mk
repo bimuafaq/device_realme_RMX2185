@@ -25,3 +25,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.surface_flinger.set_idle_timer_ms=100 \
     ro.surface_flinger.set_touch_timer_ms=200 \
     ro.surface_flinger.support_kernel_idle_timer=true
+
+# SurfaceFlinger - latch unsignaled buffer to reduce jank
+PRODUCT_PROPERTY_OVERRIDES += \
+    debug.sf.latch_unsignaled=1
