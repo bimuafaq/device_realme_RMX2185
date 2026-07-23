@@ -144,9 +144,6 @@ PRODUCT_PACKAGES += \
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += $(DEVICE_PATH)
 
-# Symbols
-PRODUCT_PACKAGES += \
-    libshim_showlogo
 
 # Wi-Fi
 PRODUCT_PACKAGES += \
