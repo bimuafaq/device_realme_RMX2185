@@ -51,10 +51,8 @@ on boot
     # Set permission for Goodix FP
     chown system system /dev/goodix_fp
 
-    # WiFi fix by Techyminati
+    # Disable connsys coredump
     setprop persist.vendor.connsys.coredump.mode 0
-    setprop ro.boot.vendor.overlay.static false
-    setprop vendor.connsys.driver.ready yes
 
 service face_hal /system/bin/true
     oneshot
