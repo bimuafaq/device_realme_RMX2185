@@ -152,9 +152,5 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     wpa_supplicant.conf
 
-# NukeApps
-PRODUCT_PACKAGES += \
-    nuke
-
 # Call proprietary blob setup
 $(call inherit-product, vendor/realme/RMX2185/RMX2185-vendor.mk)
